@@ -1,0 +1,187 @@
+<resources>
+    <string name="app_name">Quiz</string>2"
+    <string name="start_button" translatable="false">Start</string>
+    <string name="activity2_name" translatable="false">Summary Activity</string>
+    <string name="editText_main">Podaj swoje imię</string>
+    <string name="activity3_name" translatable="false">QPageActivity</string>
+    <string name="q1_text_view" translatable="false">Q1</string>
+    <string name="q2_text_view" translatable="false">Q2</string>
+    <string name="q3_text_view" translatable="false">Q3</string>
+    <string name="q4_text_view" translatable="false">Q4</string>
+    <string name="q5_text_view" translatable="false">Q5</string>
+    <string name="q6_text_view" translatable="false">Q6</string>
+    <string name="q7_text_view" translatable="false">Q7</string>
+    <string name="q8_text_view" translatable="false">Q8</string>
+    <string name="q9_text_view" translatable="false">Q9</string>
+    <string name="q10_text_view" translatable="false">Q10</string>
+    <string name="firstQ_text_view" translatable="false">Pytanie 1</string>
+    <string name="odp1_1_text_view" translatable="false">odpowiedz 1</string>
+    <string name="odp1_2_text_view" translatable="false">odpowiedz 2</string>
+    <string name="odp1_3_text_view" translatable="false">odpowiedz 3</string>
+    <string name="odp1_4_text_view" translatable="false">odpowiedz 4</string>
+    <string name="nextQ_button">Następna strona</string>
+    <string name="sex_text_view">płeć</string>
+    <string name="level_of_coking_text_view">Wybierz bohatera</string>
+    <string name="dishwasher_text_view">Zmywak</string>
+    <string name="cook_text_view">Kucharz</string>
+    <string name="chef_text_view">Chef</string>
+    <string name="subjcet_text_view">Quiz o gotowaniu</string>
+    <string name="description_image_radio_button_men">imageToRadioButtonMen</string>
+    <string name="descriptio_image_radio_button_woman">image_radio_button_woman</string>
+    <string name="summary_text_view">Podsumowanie</string>
+    <string name="Womman_sex_choice">Kobieta</string>
+    <string name="number_of_points_text_view">Liczba punktów</string>
+    <string name="sex_summary_text_view">Płeć</string>
+    <string name="sex_choise_text_view">Mężczyzna</string>
+    <string name="description_text_view">opis</string>
+    <string name="come_back_summary_button">Powrót</string>
+    <string name="restart_button">Restart</string>
+    <string name="GoodDescription">Wow !!!\n Naprawdę imponujący wynik, wpadnę do Ciebie jutro na obiad.</string>
+    <string name="BadDescription">Ehh…   na pewno nie może być, aż tak źle, kliknij RESTART i spróbuj jeszcze raz.</string>
+
+    <string name="name_summary_text_viw">Name</string>
+    <string name="ImageDescribtion">Image to question</string>
+
+    <string name="QuestionOne">Podaj odpowiednią  temperature drożdży przy produkcji pizzy: "</string>
+    <string name="Anserw1_1">100°C</string>
+    <string name="Anserw1_2">Temeratura jądra ziemi</string>
+    <string name="Anserw1_3">13―24°C</string>
+    <string name="Anserw1_4">Zero absolutne</string>
+
+    <string name="QuestionTwo">Które z homarów są czerwone jak dorosną: \n</string>
+    <string name="Anserw2_1">Homarzec (Scapi)</string>
+    <string name="Anserw2_2">Homar Europejski</string>
+    <string name="Anserw2_3">Homary Amerykańskie</string>
+    <string name="Anserw2_4">Żadne</string>
+
+    <string name="QuestionThree">Jaki owoc jest przedstawiony na obrazku: \n</string>
+    <string name="Anserw3_1">Chiński granat</string>
+    <string name="Anserw3_2">Tylko babcia wie</string>
+    <string name="Anserw3_3">Pitaya</string>
+    <string name="Anserw3_4">Koński owoc</string>
+
+    <string name="QuestionFour">Czego nie robimy z karmelem na patelni: \n</string>
+    <string name="Anserw4_1">Nie próbujemy</string>
+    <string name="Anserw4_2">Jemy</string>
+    <string name="Anserw4_3">Solimy</string>
+    <string name="Anserw4_4">Mieszać z wodą</string>
+
+    <string name="QuestionFive">Najważniesza zasada kuchni francuskiej: \n</string>
+    <string name="Anserw5_1">Podawanie wina do obiadu</string>
+    <string name="Anserw5_2">Masło, masło, masło</string>
+    <string name="Anserw5_3">Wypicie kawy przed 12 am</string>
+    <string name="Anserw5_4">Zjedzenie kilo sera w każdym miesiącu</string>
+
+    <string name="QuestionSix">Co podkreśla smak czekolady: \n</string>
+    <string name="Anserw6_1">Nutella</string>
+    <string name="Anserw6_2">Sól</string>
+    <string name="Anserw6_3">Ogórki kiszone</string>
+    <string name="Anserw6_4">Szczupła talia</string>
+
+    <string name="QuestionSeven">Co ma najwięcej kalorii:\n</string>
+    <string name="Anserw7_1">Rodzynki</string>
+    <string name="Anserw7_2">Awokado</string>
+    <string name="Anserw7_3">Banan</string>
+    <string name="Anserw7_4">Fasola czarna</string>
+
+    <string name="QuestionEight">Zieloną herbatę zalewamy wodą o temperaturze: \n</string>
+    <string name="Anserw8_1">Zależy jak dawno się gotowała</string>
+    <string name="Anserw8_3">60―80°C</string>
+    <string name="Anserw8_4">Mniej niż zerooooo</string>
+
+    <string name="QuestionNine">Jakie działanie ma Sechuan Button:\n </string>
+    <string name="Anserw9_1">Paraliżujące</string>
+    <string name="Anserw9_3">Relaksacyjne</string>
+    <string name="Anserw9_4">Zmienia Cię w Smerfa</string>
+
+    <string name="QuestionTen">Jaki jest główny składnik białej czekolady: \n</string>
+    <string name="Anserw10_1">Biały kakowiec</string>
+    <string name="Anserw10_2">Karmel</string>
+    <string name="Anserw10_3">Masło kakaowe</string>
+    <string name="Anserw10_4">Śmietana</string>
+
+
+
+
+    <string-array name="PacketOne">
+        <item>@string/QuestionOne</item>
+        <item>@string/Anserw1_1</item>
+        <item>@string/Anserw1_2</item>
+        <item>@string/Anserw1_3</item>
+        <item>@string/Anserw1_4</item>
+    </string-array>
+
+    <string-array name="PacketTwo">
+        <item>@string/QuestionTwo</item>
+        <item>@string/Anserw2_1</item>
+        <item>@string/Anserw2_2</item>
+        <item>@string/Anserw2_3</item>
+        <item>@string/Anserw2_4</item>
+    </string-array>
+
+    <string-array name="PacketThree">
+        <item>@string/QuestionThree</item>
+        <item>@string/Anserw3_1</item>
+        <item>@string/Anserw3_2</item>
+        <item>@string/Anserw3_3</item>
+        <item>@string/Anserw3_4</item>
+    </string-array>
+
+    <string-array name="PacketFour">
+        <item>@string/QuestionFour</item>
+        <item>@string/Anserw4_1</item>
+        <item>@string/Anserw4_2</item>
+        <item>@string/Anserw4_3</item>
+        <item>@string/Anserw4_4</item>
+    </string-array>
+    <string-array name="PacketFive">
+        <item>@string/QuestionFive</item>
+        <item>@string/Anserw5_1</item>
+        <item>@string/Anserw5_2</item>
+        <item>@string/Anserw5_3</item>
+        <item>@string/Anserw5_4</item>
+    </string-array>
+
+    <string-array name="PacketSix">
+        <item>@string/QuestionSix</item>
+        <item>@string/Anserw6_1</item>
+        <item>@string/Anserw6_2</item>
+        <item>@string/Anserw6_3</item>
+        <item>@string/Anserw6_4</item>
+    </string-array>
+    <string-array name="PacketSeven">
+        <item>@string/QuestionSeven</item>
+        <item>@string/Anserw7_1</item>
+        <item>@string/Anserw7_2</item>
+        <item>@string/Anserw7_3</item>
+        <item>@string/Anserw7_4</item>
+    </string-array>
+
+    <string-array name="PacketEight">
+        <item>@string/QuestionEight</item>
+        <item>@string/Anserw8_1</item>
+        <item>@string/Anserw8_2</item>
+        <item>@string/Anserw8_3</item>
+        <item>@string/Anserw8_4</item>
+
+    </string-array>
+    <string-array name="PacketNine">
+        <item>@string/QuestionNine</item>
+        <item>@string/Anserw9_1</item>
+        <item>@string/Anserw9_2</item>
+        <item>@string/Anserw9_3</item>
+        <item>@string/Anserw9_4</item>
+    </string-array>
+
+    <string-array name="PacketTen">
+        <item>@string/QuestionTen</item>
+        <item>@string/Anserw10_1</item>
+        <item>@string/Anserw10_2</item>
+        <item>@string/Anserw10_3</item>
+        <item>@string/Anserw10_4</item>
+    </string-array>
+    <string name="Anserw9_2">Uszczęśliwi Cię</string>
+    <string name="Anserw8_2">96°C</string>
+    <string name="hero" translatable="false">Hero</string>
+
+</resources>
