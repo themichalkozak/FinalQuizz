@@ -47,7 +47,7 @@
 
 
         <RadioGroup
-            android:id="@+id/Radioanserwgroup"
+            android:id="@+id/radioanserwgroup"
             style="radioButtonQpageActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">

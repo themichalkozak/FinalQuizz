@@ -1,12 +1,16 @@
 package com.example.themichalkozak.finalquiz;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,7 +18,11 @@ import java.util.ArrayList;
 
 public class QPageActivity extends AppCompatActivity {
 
-    public int anserw,correctAnserw,quantityOfPoints,orange=1;
+    public int anserw,correctAnserw,quantityOfPoints,orange=3;
+
+    String [] currentArray;
+
+    Drawable questionDrawable;
 
     public static final String  EXTRA_REPLY =
             "com.example.android.QPageActivity.extra.REPLY";
@@ -24,31 +32,35 @@ public class QPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.q_page);
 
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-
-
-        String arrayREceived[] = extras.getStringArray("String_Array");
-        int numberArray[] = extras.getIntArray("Number_Array");
-
-
-        orange = numberArray[0];
-        correctAnserw = numberArray[1];
-        quantityOfPoints = numberArray[2];
 
         ArrayList<Question> questionArrayList = new ArrayList<Question>();
 
         questionArrayList.add(new Question(getDrawable(R.drawable.pizza),getResources().getStringArray(R.array.PacketOne),5));
+        questionArrayList.add(new Question(getDrawable(R.drawable.homar),getResources().getStringArray(R.array.PacketTwo),4));
+        questionArrayList.add(new Question(getDrawable(R.drawable.pitaya),getResources().getStringArray(R.array.PacketThree),3));
+        questionArrayList.add(new Question(getDrawable(R.drawable.karmel),getResources().getStringArray(R.array.PacketFour),1));
+        questionArrayList.add(new Question(getDrawable(R.drawable.kuchniafrancuska),getResources().getStringArray(R.array.PacketFive),2));
+        questionArrayList.add(new Question(getDrawable(R.drawable.czekolada),getResources().getStringArray(R.array.PacketSix),2));
+        questionArrayList.add(new Question(getDrawable(R.drawable.kalorie),getResources().getStringArray(R.array.PacketSeven),4));
+        questionArrayList.add(new Question(getDrawable(R.drawable.zielonaherbata),getResources().getStringArray(R.array.PacketEight),3));
+        questionArrayList.add(new Question(getDrawable(R.drawable.guzikseczuanski),getResources().getStringArray(R.array.PacketNine),1));
+        questionArrayList.add(new Question(getDrawable(R.drawable.whitechocolate),getResources().getStringArray(R.array.PacketTen),3));
 
-        Question question = questionArrayList.get(orange);
 
-        String [] currentArray = question.getQuestion();
+            Question question = questionArrayList.get(orange);
+
+            currentArray = question.getQuestion();
+
+            correctAnserw = question.getCorrectAnserw();
+
+            questionDrawable = question.getImage();
+
 
 
         Log.i("PageQpageactivity",""+orange);
 
-        ImageView imageview = findViewById(R.id.QPage_Image_View);
-        imageview.setImageResource(R.drawable.pizza);
+       ImageView questionImage = (ImageView) findViewById(R.id.QPage_Image_View);
+               questionImage.setImageDrawable(questionDrawable);
 
 
         TextView questionTextview = findViewById(R.id.firstQ_text_view);
@@ -66,7 +78,31 @@ public class QPageActivity extends AppCompatActivity {
 
         RadioButton fourthAnserwRadioButton = findViewById(R.id.odp1_4_radio_button);
         fourthAnserwRadioButton.setText(currentArray[4]);
+
+
+//        ((RadioGroup) findViewById(R.id.radioanserwgroup)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                switch (checkedId){
 //
+//                    case R.id.odp1_1_radio_button:
+//                        anserw = 1;
+//                        break;
+//                    case R.id.odp1_2_radio_button:
+//                        anserw = 2;
+//                        break;
+//                    case R.id.odp1_3_radio_button:
+//                        anserw = 3;
+//                        break;
+//                    case R.id.odp1_4_radio_button:
+//                        anserw = 4;
+//                        break;
+//                }
+//            }
+//        });
+
+
+
 //        TextView secondQuestionGradding = findViewById(R.id.q2_text_view);
 //        TextView firstQuestionGradding = findViewById(R.id.q1_text_view);
 //        TextView thirdQuestionGradding = findViewById(R.id.q3_text_view);
@@ -112,38 +148,8 @@ public class QPageActivity extends AppCompatActivity {
 //                break;
 //
 //        }
-
+//
     }
-
-
-
-    public void markAnserw(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.odp1_1_radio_button:
-                if (checked)
-                    anserw=1;
-                break;
-            case R.id.odp1_2_radio_button:
-                if (checked)
-                    anserw=2;
-                Log.i("RadioButton","bro");
-                break;
-
-            case R.id.odp1_3_radio_button:
-                if(checked)
-                    anserw=3;
-                break;
-            case R.id.odp1_4_radio_button:
-                if(checked)
-                    anserw=4;
-                break;
-        }
-    }
-
     public void nextPage(View view) {
 
 

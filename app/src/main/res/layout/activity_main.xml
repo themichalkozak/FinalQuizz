@@ -159,7 +159,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:onClick="nextPage"
         android:background="@drawable/shape_triangle"
         android:text="@string/start_button"
         android:padding="8dp"
