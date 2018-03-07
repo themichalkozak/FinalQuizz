@@ -1,6 +1,7 @@
 package com.example.themichalkozak.finalquiz;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,13 +23,12 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int TEXT_REQUEST = 1;
 
-
-    int page = 1;
+    int page = 0;
     public int quantityPoints = 0;
-    boolean checkAnserw;
     public String choseSex;
     public String chosesSkill;
     public String description;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +46,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent questionIntent = new Intent(MainActivity.this,QPageActivity.class);
-                startActivity(questionIntent);
+                questionIntent.putExtra("PAGE",page);
+                questionIntent.putExtra("Test", "Test");
+                startActivityForResult(questionIntent,TEXT_REQUEST);
+                page++;
             }
         });
     }
-
             public String onRadioButtonClicked(View view) {
                 // Is the button now checked?
                 boolean checked = ((RadioButton) view).isChecked();
@@ -92,4 +94,52 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
             }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == TEXT_REQUEST && resultCode == Activity.RESULT_OK){
+            Bundle extras = data.getExtras();
+            if(extras!= null){
+                quantityPoints = extras.getInt("POINTS");
+                Log.i("Main Activity", "" + quantityPoints);
+                lunchSummaryActivity();
+            }
         }
+    }
+
+    public void lunchSummaryActivity(){
+
+        String nameEditText_String = nameEditText.getText().toString();
+
+        Intent intentSummary = new Intent(this, SummaryActivity.class);
+
+        Bundle extra = new Bundle();
+
+        String[] summary = {chosesSkill,nameEditText_String,choseSex,description};
+
+        if (quantityPoints>5){
+            summary [3] = getResources().getString(R.string.GoodDescription);
+        }
+        else summary [3] = getResources().getString(R.string.BadDescription);
+
+        if(nameEditText_String.isEmpty()){
+            nameEditText_String = "No name ;)";
+            summary [1] = nameEditText_String;
+        }
+        else if (chosesSkill.isEmpty()){
+            chosesSkill = "You don't choose your skill level";
+            summary [0] = chosesSkill;
+        }
+        else if (choseSex.isEmpty()){
+            choseSex = "Are you gender,\n Next time chose your sex";
+            summary[2] = choseSex;
+        }
+
+        extra.putStringArray("String_Array", summary);
+        extra.putInt("NUMER_OF_POINTS", quantityPoints);
+        intentSummary.putExtras(extra);
+        startActivityForResult(intentSummary, TEXT_REQUEST);
+
+
+    }
+}

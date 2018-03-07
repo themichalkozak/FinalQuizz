@@ -10,9 +10,9 @@ public class Question {
 
     private Drawable image;
     private String [] question;
-    private int correctAnserw;
+    private String correctAnserw;
 
-    public Question(Drawable image, String[] question, int correctAnserw) {
+    public Question(Drawable image, String[] question, String correctAnserw) {
         this.image = image;
         this.question = question;
         this.correctAnserw = correctAnserw;
@@ -26,7 +26,7 @@ public class Question {
         return question;
     }
 
-    public int getCorrectAnserw() {
+    public String getCorrectAnserw() {
         return correctAnserw;
     }
 }

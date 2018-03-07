@@ -10,19 +10,62 @@
     <LinearLayout
         android:id="@+id/grading_Linear_Layout"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
         android:background="@color/colorPrimaryDark"
-        android:gravity="left"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/circlegradding"
-            android:gravity="center"
-            android:text="Q1"/>
+            style="@style/Graddle"
+            android:id="@+id/graddle1"
+            android:text="@string/q1_text_view"/>
 
+        <TextView
+            style="@style/Graddle"
+            android:id="@+id/graddle2"
+            android:text="@string/q2_text_view"/>
+
+        <TextView
+            style="@style/Graddle"
+            android:id="@+id/graddle3"
+            android:text="@string/q3_text_view"/>
+
+        <TextView
+            style="@style/Graddle"
+            android:id="@+id/graddle4"
+            android:text="@string/q4_text_view"/>
+
+        <TextView
+            style="@style/Graddle"
+            android:id="@+id/graddle5"
+            android:text="@string/q5_text_view"/>
+
+        <TextView
+            style="@style/Graddle"
+            android:id="@+id/graddle6"
+            android:text="@string/q6_text_view"/>
+
+        <TextView
+            style="@style/Graddle"
+            android:id="@+id/graddle7"
+            android:text="@string/q7_text_view"/>
+
+        <TextView
+            style="@style/Graddle"
+            android:id="@+id/graddle8"
+            android:text="@string/q8_text_view"/>
+
+        <TextView
+            style="@style/Graddle"
+            android:id="@+id/graddle9"
+            android:text="@string/q9_text_view"/>
+
+        <TextView
+            style="@style/Graddle"
+            android:id="@+id/graddle10"
+            android:text="@string/q10_text_view"/>
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +92,7 @@
 
 
         <RadioGroup
-            android:id="@+id/Radioanserwgroup"
+            android:id="@+id/radioanserwgroup"
             style="radioButtonQpageActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -61,7 +104,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:onClick="markAnserw"
                 android:paddingEnd="0dp"
                 android:paddingStart="20dp"
                 android:text="@string/odp1_1_text_view"
@@ -73,7 +115,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:onClick="markAnserw"
                 android:paddingEnd="0dp"
                 android:paddingStart="20dp"
                 android:text="@string/odp1_2_text_view"
@@ -86,7 +127,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:onClick="markAnserw"
                 android:paddingEnd="0dp"
                 android:paddingStart="20dp"
                 android:text="@string/odp1_3_text_view"
@@ -99,7 +139,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:onClick="markAnserw"
                 android:paddingEnd="0dp"
                 android:paddingStart="20dp"
                 android:text="@string/odp1_4_text_view"
@@ -117,7 +156,6 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="12dp"
         android:background="@drawable/shape_triangle"
-        android:onClick="nextPage"
         android:padding="8dp"
         android:text="@string/nextQ_button"
         android:textAllCaps="true" />

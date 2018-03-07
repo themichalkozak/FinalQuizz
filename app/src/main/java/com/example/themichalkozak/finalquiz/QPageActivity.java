@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -18,14 +19,16 @@ import java.util.ArrayList;
 
 public class QPageActivity extends AppCompatActivity {
 
-    public int anserw,correctAnserw,quantityOfPoints,orange=3;
+    public int quantityOfPoints;
 
-    String [] currentArray;
-
+    String[] currentArray;
+    String correctAnserw;
     Drawable questionDrawable;
+    Question question;
 
-    public static final String  EXTRA_REPLY =
-            "com.example.android.QPageActivity.extra.REPLY";
+    ImageView questionImage;
+
+    int page = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,136 +36,155 @@ public class QPageActivity extends AppCompatActivity {
         setContentView(R.layout.q_page);
 
 
-        ArrayList<Question> questionArrayList = new ArrayList<Question>();
+        Intent reciveIntent = new Intent();
 
-        questionArrayList.add(new Question(getDrawable(R.drawable.pizza),getResources().getStringArray(R.array.PacketOne),5));
-        questionArrayList.add(new Question(getDrawable(R.drawable.homar),getResources().getStringArray(R.array.PacketTwo),4));
-        questionArrayList.add(new Question(getDrawable(R.drawable.pitaya),getResources().getStringArray(R.array.PacketThree),3));
-        questionArrayList.add(new Question(getDrawable(R.drawable.karmel),getResources().getStringArray(R.array.PacketFour),1));
-        questionArrayList.add(new Question(getDrawable(R.drawable.kuchniafrancuska),getResources().getStringArray(R.array.PacketFive),2));
-        questionArrayList.add(new Question(getDrawable(R.drawable.czekolada),getResources().getStringArray(R.array.PacketSix),2));
-        questionArrayList.add(new Question(getDrawable(R.drawable.kalorie),getResources().getStringArray(R.array.PacketSeven),4));
-        questionArrayList.add(new Question(getDrawable(R.drawable.zielonaherbata),getResources().getStringArray(R.array.PacketEight),3));
-        questionArrayList.add(new Question(getDrawable(R.drawable.guzikseczuanski),getResources().getStringArray(R.array.PacketNine),1));
-        questionArrayList.add(new Question(getDrawable(R.drawable.whitechocolate),getResources().getStringArray(R.array.PacketTen),3));
-
-
-            Question question = questionArrayList.get(orange);
-
-            currentArray = question.getQuestion();
-
-            correctAnserw = question.getCorrectAnserw();
-
-            questionDrawable = question.getImage();
-
-
-
-        Log.i("PageQpageactivity",""+orange);
-
-       ImageView questionImage = (ImageView) findViewById(R.id.QPage_Image_View);
-               questionImage.setImageDrawable(questionDrawable);
-
+//       int  page = getIntent().getExtras().getInt("PAGE");
 
         TextView questionTextview = findViewById(R.id.firstQ_text_view);
+        final RadioButton firstAnserwRadioButton = findViewById(R.id.odp1_1_radio_button);
+        final RadioButton secondAnserwRadioButton = findViewById(R.id.odp1_2_radio_button);
+        final RadioButton thirdAnserwRadioButton = findViewById(R.id.odp1_3_radio_button);
+        final RadioButton fourthAnserwRadioButton = findViewById(R.id.odp1_4_radio_button);
+
+        TextView graddle1 = findViewById(R.id.graddle1);
+        TextView graddle2 = findViewById(R.id.graddle2);
+        TextView graddle3 = findViewById(R.id.graddle3);
+        TextView graddle4 = findViewById(R.id.graddle4);
+        TextView graddle5 = findViewById(R.id.graddle5);
+        TextView graddle6 = findViewById(R.id.graddle6);
+        TextView graddle7 = findViewById(R.id.graddle7);
+        TextView graddle8 = findViewById(R.id.graddle8);
+        TextView graddle9 = findViewById(R.id.graddle9);
+        TextView graddle10 = findViewById(R.id.graddle10);
+
+
+        RadioGroup questionRadioGroup = (RadioGroup) findViewById(R.id.radioanserwgroup);
+        questionRadioGroup.clearCheck();
+
+        final ArrayList<Question> questionArrayList = new ArrayList<Question>();
+
+        questionArrayList.add(new Question(getDrawable(R.drawable.pizza), getResources().getStringArray(R.array.PacketOne), getResources().getStringArray(R.array.PacketOne)[3]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.homar), getResources().getStringArray(R.array.PacketTwo), getResources().getStringArray(R.array.PacketTwo)[4]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.pitaya), getResources().getStringArray(R.array.PacketThree), getResources().getStringArray(R.array.PacketThree)[3]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.karmel), getResources().getStringArray(R.array.PacketFour), getResources().getStringArray(R.array.PacketFour)[1]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.kuchniafrancuska), getResources().getStringArray(R.array.PacketFive), getResources().getStringArray(R.array.PacketFive)[2]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.czekolada), getResources().getStringArray(R.array.PacketSix), getResources().getStringArray(R.array.PacketSix)[2]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.kalorie), getResources().getStringArray(R.array.PacketSeven), getResources().getStringArray(R.array.PacketSeven)[4]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.zielonaherbata), getResources().getStringArray(R.array.PacketEight), getResources().getStringArray(R.array.PacketEight)[3]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.guzikseczuanski), getResources().getStringArray(R.array.PacketNine), getResources().getStringArray(R.array.PacketNine)[1]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.whitechocolate), getResources().getStringArray(R.array.PacketTen), getResources().getStringArray(R.array.PacketTen)[3]));
+
+        question = questionArrayList.get(page);
+        currentArray = question.getQuestion();
+        correctAnserw = question.getCorrectAnserw();
+        questionDrawable = question.getImage();
+
+        Log.i("PageQpageactivity", "" + page);
+
+        questionImage = (ImageView) findViewById(R.id.QPage_Image_View);
+        questionImage.setImageDrawable(questionDrawable);
+
+
         questionTextview.setText(currentArray[0]);
-
-
-        RadioButton firstAnserwRadioButton = findViewById(R.id.odp1_1_radio_button);
         firstAnserwRadioButton.setText(currentArray[1]);
-
-        RadioButton secondAnserwRadioButton = findViewById(R.id.odp1_2_radio_button);
         secondAnserwRadioButton.setText(currentArray[2]);
-
-        RadioButton thirdAnserwRadioButton = findViewById(R.id.odp1_3_radio_button);
         thirdAnserwRadioButton.setText(currentArray[3]);
-
-        RadioButton fourthAnserwRadioButton = findViewById(R.id.odp1_4_radio_button);
         fourthAnserwRadioButton.setText(currentArray[4]);
 
 
-//        ((RadioGroup) findViewById(R.id.radioanserwgroup)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                switch (checkedId){
-//
-//                    case R.id.odp1_1_radio_button:
-//                        anserw = 1;
-//                        break;
-//                    case R.id.odp1_2_radio_button:
-//                        anserw = 2;
-//                        break;
-//                    case R.id.odp1_3_radio_button:
-//                        anserw = 3;
-//                        break;
-//                    case R.id.odp1_4_radio_button:
-//                        anserw = 4;
-//                        break;
-//                }
-//            }
-//        });
+        questionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+
+                    case R.id.odp1_1_radio_button:
+                        if (firstAnserwRadioButton.getText().toString().equals(correctAnserw))
+                            quantityOfPoints += 1;
+                        Log.i("Radiobutton", "is Checked");
+                        break;
+                    case R.id.odp1_2_radio_button:
+                        if (secondAnserwRadioButton.getText().toString().equals(correctAnserw))
+                            quantityOfPoints += 1;
+                        break;
+                    case R.id.odp1_3_radio_button:
+                        if (thirdAnserwRadioButton.getText().toString().equals(correctAnserw)) {
+                            quantityOfPoints++;
+                            Log.i("Radio button 1.3 ", "" + quantityOfPoints);
+                        }
+                        Log.i("" + thirdAnserwRadioButton.getText(), correctAnserw);
+                        break;
+                    case R.id.odp1_4_radio_button:
+                        if (fourthAnserwRadioButton.getText().toString().equals(correctAnserw))
+                            quantityOfPoints += 1;
+                        break;
+                }
+            }
+        });
+
+        Log.i("QPageActivity", "quantity of points " + quantityOfPoints);
 
 
+        findViewById(R.id.nextQ_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-//        TextView secondQuestionGradding = findViewById(R.id.q2_text_view);
-//        TextView firstQuestionGradding = findViewById(R.id.q1_text_view);
-//        TextView thirdQuestionGradding = findViewById(R.id.q3_text_view);
-//        TextView fourthQuestionGradding = findViewById(R.id.q4_text_view);
-//        TextView fifthQuestionGradding = findViewById(R.id.q5_text_view);
-//        TextView sixthQuestionGradding = findViewById(R.id.q6_text_view);
-//        TextView seventhQuestionGradding = findViewById(R.id.q7_text_view);
-//        TextView eighthQuestionGradding = findViewById(R.id.q8_text_view);
-//        TextView ninethQuestionGradding = findViewById(R.id.q9_text_view);
-//        TextView tenthQuestionGradding = findViewById(R.id.q10_text_view);
+                question = questionArrayList.get(page);
+                currentArray = question.getQuestion();
+                correctAnserw = question.getCorrectAnserw();
+                questionDrawable = question.getImage();
 
-//        switch (orange){
-//
-//            case 1: firstQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                Log.i("qpage",""+ orange);
-//                break;
-//            case 2: secondQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                imageview.setImageResource(R.drawable.homar);
-//                break;
-//            case 3: thirdQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                imageview.setImageResource(R.drawable.pitayatwo);
-//                break;
-//            case 4: fourthQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                imageview.setImageResource(R.drawable.karmel);
-//                break;
-//            case 5: fifthQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                imageview.setImageResource(R.drawable.kuchniafrancuska);
-//                break;
-//            case 6: sixthQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                imageview.setImageResource(R.drawable.czekolada);
-//                break;
-//            case 7: seventhQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                imageview.setImageResource(R.drawable.kalorie);
-//                break;
-//            case 8: eighthQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                imageview.setImageResource(R.drawable.zielonaherbata);
-//                break;
-//            case 9: ninethQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                imageview.setImageResource(R.drawable.guzikseczuanski);
-//                break;
-//            case 10: tenthQuestionGradding.setBackgroundResource(R.drawable.circlegradding);
-//                imageview.setImageResource(R.drawable.whitechocolate);
-//                break;
-//
-//        }
-//
-    }
-    public void nextPage(View view) {
+                questionImage.setImageDrawable(questionDrawable);
+
+                page++;
+                Log.i("nextQ_button", "" + page);
+            }
+        });
 
 
-        Intent replyIntent = new Intent();
+        final ArrayList<TextView> graddleArray = new ArrayList<TextView>();
 
-        if (correctAnserw==anserw) {
+        graddleArray.add(graddle1);
+        graddleArray.add(graddle2);
+        graddleArray.add(graddle3);
+        graddleArray.add(graddle4);
+        graddleArray.add(graddle5);
+        graddleArray.add(graddle5);
+        graddleArray.add(graddle6);
+        graddleArray.add(graddle7);
+        graddleArray.add(graddle8);
+        graddleArray.add(graddle9);
+        graddleArray.add(graddle10);
 
-            replyIntent.putExtra("EXTRA_CORRECT", true);
+
+        TextView currentGraddle = graddleArray.get(page);
+        currentGraddle.setBackground(getDrawable(R.drawable.circle_checked));
+
+        if (page == 10) {
+            finish();
         }
 
-        setResult(RESULT_OK, replyIntent);
-        finish();
+        Log.i("Page", "" + page);
+    }
 
+    @Override
+    public void finish() {
 
+        if (page > 9) {
+
+            Log.i("page>10", "inside");
+            Intent questionIntent = new Intent();
+
+            questionIntent.putExtra("POINTS", quantityOfPoints);
+
+            setResult(RESULT_OK, questionIntent);
+            super.finish();
+
+        } else {
+            Intent nextQuestionPage = new Intent(QPageActivity.this, QPageActivity.class);
+            page++;
+            nextQuestionPage.putExtra("PAGE", page);
+            startActivity(nextQuestionPage);
+        }
     }
 }
+
