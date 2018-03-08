@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,6 +34,8 @@ public class QPageActivity extends AppCompatActivity {
     private LinearLayout gradleLayout;
     TextView gradleTv;
 
+    boolean choosenAnserw;
+
     int page = 0;
 
     @Override
@@ -56,9 +59,9 @@ public class QPageActivity extends AppCompatActivity {
 
         gradleTv = new TextView(QPageActivity.this);
 
-        for(int i=1;i<10;i++){
+        for(int i=0;i<10;i++){
 
-            gradleLayout.addView(creatNewGradleTv(page));
+            gradleLayout.addView(creatNewGradleTv(i));
 
         }
 
@@ -96,63 +99,82 @@ public class QPageActivity extends AppCompatActivity {
         Log.i("PageQpageactivity", "" + page);
 
 
+        choosenAnserw = false;
+
         questionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+
                 switch (checkedId) {
 
                     case R.id.odp1_1_radio_button:
                         if (firstAnserwRadioButton.getText().toString().equals(correctAnserw)){
-
-
                             quantityOfPoints += 1;
-
+                            choosenAnserw = true;
+                        } else choosenAnserw = false;
                         Log.i("Radiobutton", "is Checked");
-                        }
                         break;
                     case R.id.odp1_2_radio_button:
                         if (secondAnserwRadioButton.getText().toString().equals(correctAnserw)) {
                             quantityOfPoints += 1;
-
-                        }
+                            choosenAnserw = true;
+                        } else choosenAnserw = false;
 
                         break;
                     case R.id.odp1_3_radio_button:
                         if (thirdAnserwRadioButton.getText().toString().equals(correctAnserw)) {
                             quantityOfPoints++;
                             Log.i("Radio button 1.3 ", "" + quantityOfPoints);
-                        }
+                            choosenAnserw = true;
+                        } else choosenAnserw = false;
                         Log.i("" + thirdAnserwRadioButton.getText(), correctAnserw);
                         break;
                     case R.id.odp1_4_radio_button:
-                        if (fourthAnserwRadioButton.getText().toString().equals(correctAnserw)) {
+                            choosenAnserw = fourthAnserwRadioButton.getText().toString().equals(correctAnserw);
+                        if (choosenAnserw) {
                             quantityOfPoints += 1;
-
-                        }
+                        } else choosenAnserw = false;
                         break;
                 }
             }
         });
 
+
+
         Log.i("QPageActivity", "quantity of points " + quantityOfPoints);
+
+
 
 
         findViewById(R.id.nextQ_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Button nextPage = findViewById(R.id.nextQ_button);
+                if(page==9){
+                    nextPage.setText("Summary");
+                }
+
+                gradleTv = findViewById(page);
+
+                if(choosenAnserw){
+                    gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
+                }else {
+                    gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
+                }
+
+                page++;
+
                 question = questionArrayList.get(page);
                 currentArray = question.getQuestion();
                 correctAnserw = question.getCorrectAnserw();
-                questionDrawable = question.getImage();
-                questionImage.setImageDrawable(questionDrawable);
+                questionImage.setImageDrawable(question.getImage());
                 questionTextview.setText(currentArray[0]);
                 firstAnserwRadioButton.setText(currentArray[1]);
                 secondAnserwRadioButton.setText(currentArray[2]);
                 thirdAnserwRadioButton.setText(currentArray[3]);
                 fourthAnserwRadioButton.setText(currentArray[4]);
 
-                page++;
                 Log.i("nextQ_button", "" + page);
             }
         });
@@ -168,11 +190,13 @@ public class QPageActivity extends AppCompatActivity {
 
 
         final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(4,0,4,0);
         final TextView gradleTv = new TextView(QPageActivity.this);
         gradleTv.setLayoutParams(layoutParams);
         gradleTv.setText("Q");
         gradleTv.setId(IdIndex);
         gradleTv.setBackground(getDrawable(R.drawable.circle_checked));
+        gradleTv.setGravity(Gravity.CENTER);
 
         return gradleTv;
 
@@ -180,8 +204,6 @@ public class QPageActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-
-        if (page > 9) {
 
             Log.i("page>10", "inside");
             Intent questionIntent = new Intent();
@@ -191,12 +213,6 @@ public class QPageActivity extends AppCompatActivity {
             setResult(RESULT_OK, questionIntent);
             super.finish();
 
-        } else {
-            Intent nextQuestionPage = new Intent(QPageActivity.this, QPageActivity.class);
-            page++;
-            nextQuestionPage.putExtra("PAGE", page);
-            startActivity(nextQuestionPage);
-        }
     }
 }
 
