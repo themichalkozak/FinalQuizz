@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -28,6 +30,9 @@ public class QPageActivity extends AppCompatActivity {
 
     ImageView questionImage;
 
+    private LinearLayout gradleLayout;
+    TextView gradleTv;
+
     int page = 0;
 
     @Override
@@ -40,24 +45,25 @@ public class QPageActivity extends AppCompatActivity {
 
 //       int  page = getIntent().getExtras().getInt("PAGE");
 
-        TextView questionTextview = findViewById(R.id.firstQ_text_view);
+        final TextView questionTextview = findViewById(R.id.firstQ_text_view);
+
         final RadioButton firstAnserwRadioButton = findViewById(R.id.odp1_1_radio_button);
         final RadioButton secondAnserwRadioButton = findViewById(R.id.odp1_2_radio_button);
         final RadioButton thirdAnserwRadioButton = findViewById(R.id.odp1_3_radio_button);
         final RadioButton fourthAnserwRadioButton = findViewById(R.id.odp1_4_radio_button);
 
-        TextView graddle1 = findViewById(R.id.graddle1);
-        TextView graddle2 = findViewById(R.id.graddle2);
-        TextView graddle3 = findViewById(R.id.graddle3);
-        TextView graddle4 = findViewById(R.id.graddle4);
-        TextView graddle5 = findViewById(R.id.graddle5);
-        TextView graddle6 = findViewById(R.id.graddle6);
-        TextView graddle7 = findViewById(R.id.graddle7);
-        TextView graddle8 = findViewById(R.id.graddle8);
-        TextView graddle9 = findViewById(R.id.graddle9);
-        TextView graddle10 = findViewById(R.id.graddle10);
+        gradleLayout = findViewById(R.id.gradle_layout);
+
+        gradleTv = new TextView(QPageActivity.this);
+
+        for(int i=1;i<10;i++){
+
+            gradleLayout.addView(creatNewGradleTv(page));
+
+        }
 
 
+        questionImage = (ImageView) findViewById(R.id.QPage_Image_View);
         RadioGroup questionRadioGroup = (RadioGroup) findViewById(R.id.radioanserwgroup);
         questionRadioGroup.clearCheck();
 
@@ -75,21 +81,19 @@ public class QPageActivity extends AppCompatActivity {
         questionArrayList.add(new Question(getDrawable(R.drawable.whitechocolate), getResources().getStringArray(R.array.PacketTen), getResources().getStringArray(R.array.PacketTen)[3]));
 
         question = questionArrayList.get(page);
+
         currentArray = question.getQuestion();
         correctAnserw = question.getCorrectAnserw();
         questionDrawable = question.getImage();
-
-        Log.i("PageQpageactivity", "" + page);
-
-        questionImage = (ImageView) findViewById(R.id.QPage_Image_View);
         questionImage.setImageDrawable(questionDrawable);
-
 
         questionTextview.setText(currentArray[0]);
         firstAnserwRadioButton.setText(currentArray[1]);
         secondAnserwRadioButton.setText(currentArray[2]);
         thirdAnserwRadioButton.setText(currentArray[3]);
         fourthAnserwRadioButton.setText(currentArray[4]);
+
+        Log.i("PageQpageactivity", "" + page);
 
 
         questionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -98,13 +102,20 @@ public class QPageActivity extends AppCompatActivity {
                 switch (checkedId) {
 
                     case R.id.odp1_1_radio_button:
-                        if (firstAnserwRadioButton.getText().toString().equals(correctAnserw))
+                        if (firstAnserwRadioButton.getText().toString().equals(correctAnserw)){
+
+
                             quantityOfPoints += 1;
+
                         Log.i("Radiobutton", "is Checked");
+                        }
                         break;
                     case R.id.odp1_2_radio_button:
-                        if (secondAnserwRadioButton.getText().toString().equals(correctAnserw))
+                        if (secondAnserwRadioButton.getText().toString().equals(correctAnserw)) {
                             quantityOfPoints += 1;
+
+                        }
+
                         break;
                     case R.id.odp1_3_radio_button:
                         if (thirdAnserwRadioButton.getText().toString().equals(correctAnserw)) {
@@ -114,8 +125,10 @@ public class QPageActivity extends AppCompatActivity {
                         Log.i("" + thirdAnserwRadioButton.getText(), correctAnserw);
                         break;
                     case R.id.odp1_4_radio_button:
-                        if (fourthAnserwRadioButton.getText().toString().equals(correctAnserw))
+                        if (fourthAnserwRadioButton.getText().toString().equals(correctAnserw)) {
                             quantityOfPoints += 1;
+
+                        }
                         break;
                 }
             }
@@ -132,38 +145,37 @@ public class QPageActivity extends AppCompatActivity {
                 currentArray = question.getQuestion();
                 correctAnserw = question.getCorrectAnserw();
                 questionDrawable = question.getImage();
-
                 questionImage.setImageDrawable(questionDrawable);
+                questionTextview.setText(currentArray[0]);
+                firstAnserwRadioButton.setText(currentArray[1]);
+                secondAnserwRadioButton.setText(currentArray[2]);
+                thirdAnserwRadioButton.setText(currentArray[3]);
+                fourthAnserwRadioButton.setText(currentArray[4]);
 
                 page++;
                 Log.i("nextQ_button", "" + page);
             }
         });
 
-
-        final ArrayList<TextView> graddleArray = new ArrayList<TextView>();
-
-        graddleArray.add(graddle1);
-        graddleArray.add(graddle2);
-        graddleArray.add(graddle3);
-        graddleArray.add(graddle4);
-        graddleArray.add(graddle5);
-        graddleArray.add(graddle5);
-        graddleArray.add(graddle6);
-        graddleArray.add(graddle7);
-        graddleArray.add(graddle8);
-        graddleArray.add(graddle9);
-        graddleArray.add(graddle10);
-
-
-        TextView currentGraddle = graddleArray.get(page);
-        currentGraddle.setBackground(getDrawable(R.drawable.circle_checked));
-
         if (page == 10) {
             finish();
         }
 
         Log.i("Page", "" + page);
+    }
+
+    public TextView creatNewGradleTv (int IdIndex){
+
+
+        final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        final TextView gradleTv = new TextView(QPageActivity.this);
+        gradleTv.setLayoutParams(layoutParams);
+        gradleTv.setText("Q");
+        gradleTv.setId(IdIndex);
+        gradleTv.setBackground(getDrawable(R.drawable.circle_checked));
+
+        return gradleTv;
+
     }
 
     @Override

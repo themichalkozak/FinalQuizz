@@ -8,7 +8,7 @@
     android:id="@+id/question_layout">
 
     <LinearLayout
-        android:id="@+id/grading_Linear_Layout"
+        android:id="@+id/gradle_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
@@ -17,61 +17,13 @@
         android:background="@color/colorPrimaryDark"
         android:orientation="horizontal">
 
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle1"
-            android:text="@string/q1_text_view"/>
 
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle2"
-            android:text="@string/q2_text_view"/>
-
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle3"
-            android:text="@string/q3_text_view"/>
-
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle4"
-            android:text="@string/q4_text_view"/>
-
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle5"
-            android:text="@string/q5_text_view"/>
-
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle6"
-            android:text="@string/q6_text_view"/>
-
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle7"
-            android:text="@string/q7_text_view"/>
-
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle8"
-            android:text="@string/q8_text_view"/>
-
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle9"
-            android:text="@string/q9_text_view"/>
-
-        <TextView
-            style="@style/Graddle"
-            android:id="@+id/graddle10"
-            android:text="@string/q10_text_view"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/grading_Linear_Layout"
+        android:layout_below="@+id/gradle_layout"
         android:orientation="vertical">
 
 
@@ -84,7 +36,7 @@
             android:text="@string/firstQ_text_view" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="180dp"
             android:id="@+id/QPage_Image_View"
             android:contentDescription="@string/ImageDescribtion"
