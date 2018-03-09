@@ -74,9 +74,9 @@
 
     <string name="QuestionSix">Co podkreśla smak czekolady: \n</string>
     <string name="Anserw6_1">Nutella</string>
-    <string name="Anserw6_2">Sól</string>
+    <string name="Anserw6_2">Szczupła talia</string>
     <string name="Anserw6_3">Ogórki kiszone</string>
-    <string name="Anserw6_4">Szczupła talia</string>
+    <string name="Anserw6_4">Sól</string>
 
     <string name="QuestionSeven">Co ma najwięcej kalorii:\n</string>
     <string name="Anserw7_1">Rodzynki</string>
@@ -180,8 +180,33 @@
         <item>@string/Anserw10_3</item>
         <item>@string/Anserw10_4</item>
     </string-array>
+    
     <string name="Anserw9_2">Uszczęśliwi Cię</string>
     <string name="Anserw8_2">96°C</string>
     <string name="hero" translatable="false">Hero</string>
 
+    <string name="Q1">Q1</string>
+    <string name="Q2">Q2</string>
+    <string name="Q3">Q3</string>
+    <string name="Q4">Q4</string>
+    <string name="Q5">Q5</string>
+    <string name="Q6">Q6</string>
+    <string name="Q7">Q7</string>
+    <string name="Q8">Q8</string>
+    <string name="Q9">Q9</string>
+    <string name="Q10">Q10</string>
+
+
+    <string-array name="numberQ">\
+        <item>@string/Q1</item>
+        <item>@string/Q2</item>
+        <item>@string/Q3</item>
+        <item>@string/Q4</item>
+        <item>@string/Q5</item>
+        <item>@string/Q6</item>
+        <item>@string/Q7</item>
+        <item>@string/Q8</item>
+        <item>@string/Q9</item>
+        <item>@string/Q10</item>
+    </string-array>
 </resources>

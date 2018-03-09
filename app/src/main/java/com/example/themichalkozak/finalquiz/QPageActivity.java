@@ -77,7 +77,7 @@ public class QPageActivity extends AppCompatActivity {
         questionArrayList.add(new Question(getDrawable(R.drawable.pitaya), getResources().getStringArray(R.array.PacketThree), getResources().getStringArray(R.array.PacketThree)[3]));
         questionArrayList.add(new Question(getDrawable(R.drawable.karmel), getResources().getStringArray(R.array.PacketFour), getResources().getStringArray(R.array.PacketFour)[1]));
         questionArrayList.add(new Question(getDrawable(R.drawable.kuchniafrancuska), getResources().getStringArray(R.array.PacketFive), getResources().getStringArray(R.array.PacketFive)[2]));
-        questionArrayList.add(new Question(getDrawable(R.drawable.czekolada), getResources().getStringArray(R.array.PacketSix), getResources().getStringArray(R.array.PacketSix)[2]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.czekolada), getResources().getStringArray(R.array.PacketSix), getResources().getStringArray(R.array.PacketSix)[4]));
         questionArrayList.add(new Question(getDrawable(R.drawable.kalorie), getResources().getStringArray(R.array.PacketSeven), getResources().getStringArray(R.array.PacketSeven)[4]));
         questionArrayList.add(new Question(getDrawable(R.drawable.zielonaherbata), getResources().getStringArray(R.array.PacketEight), getResources().getStringArray(R.array.PacketEight)[3]));
         questionArrayList.add(new Question(getDrawable(R.drawable.guzikseczuanski), getResources().getStringArray(R.array.PacketNine), getResources().getStringArray(R.array.PacketNine)[1]));
@@ -98,49 +98,6 @@ public class QPageActivity extends AppCompatActivity {
 
         Log.i("PageQpageactivity", "" + page);
 
-
-        choosenAnserw = false;
-
-        questionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                switch (checkedId) {
-
-                    case R.id.odp1_1_radio_button:
-                        if (firstAnserwRadioButton.getText().toString().equals(correctAnserw)){
-                            quantityOfPoints += 1;
-                            choosenAnserw = true;
-                        } else choosenAnserw = false;
-                        Log.i("Radiobutton", "is Checked");
-                        break;
-                    case R.id.odp1_2_radio_button:
-                        if (secondAnserwRadioButton.getText().toString().equals(correctAnserw)) {
-                            quantityOfPoints += 1;
-                            choosenAnserw = true;
-                        } else choosenAnserw = false;
-
-                        break;
-                    case R.id.odp1_3_radio_button:
-                        if (thirdAnserwRadioButton.getText().toString().equals(correctAnserw)) {
-                            quantityOfPoints++;
-                            Log.i("Radio button 1.3 ", "" + quantityOfPoints);
-                            choosenAnserw = true;
-                        } else choosenAnserw = false;
-                        Log.i("" + thirdAnserwRadioButton.getText(), correctAnserw);
-                        break;
-                    case R.id.odp1_4_radio_button:
-                            choosenAnserw = fourthAnserwRadioButton.getText().toString().equals(correctAnserw);
-                        if (choosenAnserw) {
-                            quantityOfPoints += 1;
-                        } else choosenAnserw = false;
-                        break;
-                }
-            }
-        });
-
-
-
         Log.i("QPageActivity", "quantity of points " + quantityOfPoints);
 
 
@@ -156,7 +113,7 @@ public class QPageActivity extends AppCompatActivity {
                 }
 
                 gradleTv = findViewById(page);
-
+//
                 if(choosenAnserw){
                     gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
                 }else {
@@ -165,37 +122,87 @@ public class QPageActivity extends AppCompatActivity {
 
                 page++;
 
-                question = questionArrayList.get(page);
-                currentArray = question.getQuestion();
-                correctAnserw = question.getCorrectAnserw();
-                questionImage.setImageDrawable(question.getImage());
-                questionTextview.setText(currentArray[0]);
-                firstAnserwRadioButton.setText(currentArray[1]);
-                secondAnserwRadioButton.setText(currentArray[2]);
-                thirdAnserwRadioButton.setText(currentArray[3]);
-                fourthAnserwRadioButton.setText(currentArray[4]);
+                if (page<10) {
+
+                    question = questionArrayList.get(page);
+                    currentArray = question.getQuestion();
+                    correctAnserw = question.getCorrectAnserw();
+                    questionImage.setImageDrawable(question.getImage());
+                    questionTextview.setText(currentArray[0]);
+
+                    firstAnserwRadioButton.setText(currentArray[1]);
+                    secondAnserwRadioButton.setText(currentArray[2]);
+                    thirdAnserwRadioButton.setText(currentArray[3]);
+                    fourthAnserwRadioButton.setText(currentArray[4]);
+
+                    firstAnserwRadioButton.setChecked(false);
+                    secondAnserwRadioButton.setChecked(false);
+                    thirdAnserwRadioButton.setChecked(false);
+                    fourthAnserwRadioButton.setChecked(false);
+
+                    if(!(firstAnserwRadioButton.isChecked() && secondAnserwRadioButton.isChecked() && thirdAnserwRadioButton.isChecked() && fourthAnserwRadioButton.isChecked())){
+                        choosenAnserw = false;
+                    }
+
+                }else finish();
 
                 Log.i("nextQ_button", "" + page);
             }
         });
 
-        if (page == 10) {
-            finish();
-        }
+        questionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                switch (checkedId) {
+
+                    case R.id.odp1_1_radio_button:
+                        if (firstAnserwRadioButton.getText().toString().equals(correctAnserw)){
+                            quantityOfPoints += 1;
+                            choosenAnserw = true;
+                        }
+                        Log.i("Radiobutton", "is Checked");
+                        break;
+                    case R.id.odp1_2_radio_button:
+                        if (secondAnserwRadioButton.getText().toString().equals(correctAnserw)) {
+                            quantityOfPoints += 1;
+                            choosenAnserw = true;
+                        }
+
+                        break;
+                    case R.id.odp1_3_radio_button:
+                        if (thirdAnserwRadioButton.getText().toString().equals(correctAnserw)) {
+                            quantityOfPoints++;
+                            Log.i("Radio button 1.3 ", "" + quantityOfPoints);
+                            choosenAnserw = true;
+                        }
+                        Log.i("" + thirdAnserwRadioButton.getText(), correctAnserw);
+                        break;
+                    case R.id.odp1_4_radio_button:
+                        choosenAnserw = fourthAnserwRadioButton.getText().toString().equals(correctAnserw);
+                        if (choosenAnserw) {
+                            quantityOfPoints += 1;
+                        }
+                        break;
+                }
+            }
+        });
 
         Log.i("Page", "" + page);
     }
 
     public TextView creatNewGradleTv (int IdIndex){
 
+        String QArray [] = getResources().getStringArray(R.array.numberQ);
+
 
         final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(4,0,4,0);
         final TextView gradleTv = new TextView(QPageActivity.this);
         gradleTv.setLayoutParams(layoutParams);
-        gradleTv.setText("Q");
+        gradleTv.setText(QArray[IdIndex]);
         gradleTv.setId(IdIndex);
-        gradleTv.setBackground(getDrawable(R.drawable.circle_checked));
+        gradleTv.setBackground(getDrawable(R.drawable.circle_unchecked));
         gradleTv.setGravity(Gravity.CENTER);
 
         return gradleTv;
