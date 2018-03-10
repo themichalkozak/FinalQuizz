@@ -65,7 +65,6 @@ public class QPageActivity extends AppCompatActivity {
 
         }
 
-
         questionImage = (ImageView) findViewById(R.id.QPage_Image_View);
         RadioGroup questionRadioGroup = (RadioGroup) findViewById(R.id.radioanserwgroup);
         questionRadioGroup.clearCheck();
@@ -119,6 +118,8 @@ public class QPageActivity extends AppCompatActivity {
                 }else {
                     gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
                 }
+
+                Log.i("chosen Anserw ", " " + choosenAnserw);
 
                 page++;
 
@@ -189,6 +190,8 @@ public class QPageActivity extends AppCompatActivity {
         });
 
         Log.i("Page", "" + page);
+
+
     }
 
     public TextView creatNewGradleTv (int IdIndex){
@@ -221,5 +224,37 @@ public class QPageActivity extends AppCompatActivity {
             super.finish();
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+//        for(int i =0 ; i<10;i++){
+//            gradleTv.setId(i);
+//            gradleTv.getBackground();
+//        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        for (int i=0 ;i<10;i++){
+            ArrayList<TextView> gradleArrayTv = new ArrayList<>();
+            TextView gradleTv = findViewById(i);
+            if(choosenAnserw){
+                gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
+            }else {
+                gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
+            }
+            gradleArrayTv.add(gradleTv);
+        }
+    }
 }
+
+
 
