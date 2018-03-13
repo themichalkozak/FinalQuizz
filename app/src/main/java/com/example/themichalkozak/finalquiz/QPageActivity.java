@@ -31,38 +31,60 @@ public class QPageActivity extends AppCompatActivity {
     String correctAnserw;
     Drawable questionDrawable;
     Question question;
-
     String colorGradle;
-
     String [] colorArray;
-
     ImageView questionImage;
-
     RadioButton selectedRadiobutton;
     RadioGroup radioGroupGradle;
 
     private LinearLayout gradleLayout;
     TextView gradleTv;
 
+    private ArrayList<Question> questionArrayList;
+    private TextView questionTextview;
+    private RadioButton firstAnserwRadioButton;
+    private RadioButton secondAnserwRadioButton;
+    private RadioButton thirdAnserwRadioButton;
+    private RadioButton fourthAnserwRadioButton;
+    private Button nextPageButton;
+
+
     boolean choosenAnserw;
 
     int page = 0;
+
+    private View.OnClickListener awersomeOnClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+                nextPageButtonClicked();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.q_page);
 
-        if (savedInstanceState != null) {
+        gradleTv = new TextView(QPageActivity.this);
+
+        gradleLayout = findViewById(R.id.gradle_layout);
+
+        for (int i = 0; i < 10; i++) {
+            gradleLayout.addView(creatNewGradleTv(i));
+        }
+        if (savedInstanceState != null)
+        {
             String [] colorArrayTest = savedInstanceState.getStringArray("TEST");
-            int pageTest = savedInstanceState.getInt("PAGE");
-            Log.i(" pageTest", " " + pageTest);
+            Log.i("onCreate", " " + colorArrayTest [5]);
+            page = savedInstanceState.getInt("PAGE");
+            Log.i(" onCreate", " " + page);
 
             if(colorArrayTest.length != 0){
 
             for(int i=0;i<page;i++){
                 gradleTv = findViewById(i);
-                if(colorArrayTest [i].equals("red")){
+                gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
+                if(colorArrayTest [i].equals("green")){
                     gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
                 }else{
                     gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
@@ -71,38 +93,27 @@ public class QPageActivity extends AppCompatActivity {
             }
         }
 
-
-
-            gradleLayout = findViewById(R.id.gradle_layout);
-
-
-            for (int i = 0; i < 10; i++) {
-
-                gradleLayout.addView(creatNewGradleTv(i));
-
-
-            }
-
+                gradleTv = findViewById(page);
+                Log.i("onCreate", " " + gradleTv);
 
             Intent reciveIntent = new Intent();
 
 //       int  page = getIntent().getExtras().getInt("PAGE");
 
-            final TextView questionTextview = findViewById(R.id.firstQ_text_view);
+            questionTextview = findViewById(R.id.firstQ_text_view);
 
-            final RadioButton firstAnserwRadioButton = findViewById(R.id.odp1_1_radio_button);
-            final RadioButton secondAnserwRadioButton = findViewById(R.id.odp1_2_radio_button);
-            final RadioButton thirdAnserwRadioButton = findViewById(R.id.odp1_3_radio_button);
-            final RadioButton fourthAnserwRadioButton = findViewById(R.id.odp1_4_radio_button);
+            firstAnserwRadioButton = findViewById(R.id.odp1_1_radio_button);
+            secondAnserwRadioButton = findViewById(R.id.odp1_2_radio_button);
+            thirdAnserwRadioButton = findViewById(R.id.odp1_3_radio_button);
+            fourthAnserwRadioButton = findViewById(R.id.odp1_4_radio_button);
 
 
-            gradleTv = new TextView(QPageActivity.this);
 
 
             questionImage = (ImageView) findViewById(R.id.QPage_Image_View);
 
 
-            final ArrayList<Question> questionArrayList = new ArrayList<Question>();
+            questionArrayList = new ArrayList<Question>();
 
             questionArrayList.add(new Question(getDrawable(R.drawable.pizza), getResources().getStringArray(R.array.PacketOne), getResources().getStringArray(R.array.PacketOne)[3]));
             questionArrayList.add(new Question(getDrawable(R.drawable.homar), getResources().getStringArray(R.array.PacketTwo), getResources().getStringArray(R.array.PacketTwo)[4]));
@@ -130,77 +141,9 @@ public class QPageActivity extends AppCompatActivity {
 
             colorArray = new String[10];
 
+            nextPageButton = findViewById(R.id.nextQ_button);
 
-            Log.i("PageQpageactivity", "" + page);
-
-            Log.i("QPageActivity", "quantity of points " + quantityOfPoints);
-
-            findViewById(R.id.nextQ_button).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Button nextPage = findViewById(R.id.nextQ_button);
-                    if (page == 9) {
-                        nextPage.setText("Summary");
-                    }
-
-                    gradleTv = findViewById(page);
-
-//
-                    page++;
-
-                    if (page < 10) {
-
-                        if (selectedRadiobutton.getText().equals(correctAnserw)) {
-                            gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
-                            colorGradle = "green";
-
-                        } else {
-                            gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
-                            colorGradle = "red";
-                        }
-
-
-                        colorArray[page - 1] = colorGradle;
-
-                        Bundle bundle = new Bundle();
-                        bundle.putStringArray("GRADLE", colorArray);
-
-                        onSaveInstanceState(bundle);
-
-                        question = questionArrayList.get(page);
-                        currentArray = question.getQuestion();
-                        correctAnserw = question.getCorrectAnserw();
-                        questionImage.setImageDrawable(question.getImage());
-                        questionTextview.setText(currentArray[0]);
-
-                        firstAnserwRadioButton.setText(currentArray[1]);
-                        secondAnserwRadioButton.setText(currentArray[2]);
-                        thirdAnserwRadioButton.setText(currentArray[3]);
-                        fourthAnserwRadioButton.setText(currentArray[4]);
-//
-//                    ArrayList<TextView> gradleArray = new ArrayList<TextView>();
-//                    gradleArray.add(gradleTv);
-//                    int licznik =0;
-//                    TextView pelson = gradleArray.get(licznik);
-//                    licznik++;
-//                    Log.i("pelson","" + pelson.getText().toString());
-//
-//                    Bundle bundle = new Bundle();
-//
-//                    bundle.putSerializable("GRADLE",gradleArray);
-//
-//                    onSaveInstanceState(bundle);
-
-                        Log.i("Selected RadioButton", " " + selectedRadiobutton.getText().toString());
-
-
-                    } else finish();
-
-                    Log.i("nextQ_button", "" + page);
-                }
-            });
-
+            nextPageButton.setOnClickListener(awersomeOnClickListener);
 
             radioGroupGradle = findViewById(R.id.radioanserwgroup);
 
@@ -216,7 +159,10 @@ public class QPageActivity extends AppCompatActivity {
             });
 
             Log.i("Page", "" + page);
-        }
+        Log.i("Tu się wyświetli coś.."," " + nextPageButtonClicked());
+
+
+    }
 
     public TextView creatNewGradleTv (int IdIndex){
 
@@ -225,7 +171,7 @@ public class QPageActivity extends AppCompatActivity {
 
         final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(4,0,4,0);
-        final TextView gradleTv = new TextView(QPageActivity.this);
+        gradleTv = new TextView(QPageActivity.this);
         gradleTv.setLayoutParams(layoutParams);
         gradleTv.setText(QArray[IdIndex]);
         gradleTv.setId(IdIndex);
@@ -234,6 +180,46 @@ public class QPageActivity extends AppCompatActivity {
 
         return gradleTv;
 
+    }
+
+    private String nextPageButtonClicked(){
+
+        gradleTv = findViewById(page);
+
+//
+        page++;
+
+        if (page < 10) {
+
+            if (selectedRadiobutton.getText().equals(correctAnserw)) {
+                gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
+                colorGradle = "green";
+
+            } else {
+                gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
+                colorGradle = "red";
+            }
+
+            Log.i("ColorOfGradle"," " + colorGradle);
+
+            question = questionArrayList.get(page);
+            currentArray = question.getQuestion();
+            correctAnserw = question.getCorrectAnserw();
+            questionImage.setImageDrawable(question.getImage());
+            questionTextview.setText(currentArray[0]);
+
+            firstAnserwRadioButton.setText(currentArray[1]);
+            secondAnserwRadioButton.setText(currentArray[2]);
+            thirdAnserwRadioButton.setText(currentArray[3]);
+            fourthAnserwRadioButton.setText(currentArray[4]);
+
+            Log.i("Selected RadioButton", " " + selectedRadiobutton.getText().toString());
+
+
+
+        } else finish();
+        String color = "red";
+        return color;
     }
 
     @Override
@@ -255,20 +241,37 @@ public class QPageActivity extends AppCompatActivity {
 
         String [] arrayTest2 = new String[] {"green","green","green","green","green","green","green","green","green","green"};
 
+        String [] arrayWorking = outState.getStringArray("GRADLE");
+
+
+
         outState.putStringArray("TEST",arrayTest2);
 
         outState.putInt("PAGE",page);
 
-        Log.i("ColorArray", " " + colorArray[page-1]);
+        Log.i("onCreate", " " + arrayWorking[page]);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        Log.i("onCreate/colorArray"," "+ colorArray[5]);
         String [] colorArrayTest = savedInstanceState.getStringArray("TEST");
         Log.i("onRestoreInstance"," "+ colorArrayTest.length);
+        Log.i("onRestoreInstance"," "+ colorArrayTest [5]);
+
         int pageTest = savedInstanceState.getInt("PAGE");
 
+    }
+
+    public String[] saveData(String color,int indexArrayColor){
+
+
+        String [] colorArray = new String[10];
+        colorArray [indexArrayColor] = color;
+        indexArrayColor++;
+
+        return colorArray;
     }
 }
 
