@@ -3,6 +3,7 @@ package com.example.themichalkozak.finalquiz;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,9 @@ public class QPageActivity extends AppCompatActivity {
     Question question;
 
     ImageView questionImage;
+
+    RadioButton selectedRadiobutton;
+    RadioGroup radioGroupGradle;
 
     private LinearLayout gradleLayout;
     TextView gradleTv;
@@ -65,10 +69,8 @@ public class QPageActivity extends AppCompatActivity {
 
         }
 
-
         questionImage = (ImageView) findViewById(R.id.QPage_Image_View);
-        RadioGroup questionRadioGroup = (RadioGroup) findViewById(R.id.radioanserwgroup);
-        questionRadioGroup.clearCheck();
+
 
         final ArrayList<Question> questionArrayList = new ArrayList<Question>();
 
@@ -96,12 +98,10 @@ public class QPageActivity extends AppCompatActivity {
         thirdAnserwRadioButton.setText(currentArray[3]);
         fourthAnserwRadioButton.setText(currentArray[4]);
 
+
         Log.i("PageQpageactivity", "" + page);
 
         Log.i("QPageActivity", "quantity of points " + quantityOfPoints);
-
-
-
 
         findViewById(R.id.nextQ_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,15 +114,13 @@ public class QPageActivity extends AppCompatActivity {
 
                 gradleTv = findViewById(page);
 //
-                if(choosenAnserw){
-                    gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
-                }else {
-                    gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
-                }
-
                 page++;
 
                 if (page<10) {
+
+                    if(selectedRadiobutton.getText().equals(correctAnserw)){
+                    gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
+                   }else gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
 
                     question = questionArrayList.get(page);
                     currentArray = question.getQuestion();
@@ -135,14 +133,10 @@ public class QPageActivity extends AppCompatActivity {
                     thirdAnserwRadioButton.setText(currentArray[3]);
                     fourthAnserwRadioButton.setText(currentArray[4]);
 
-                    firstAnserwRadioButton.setChecked(false);
-                    secondAnserwRadioButton.setChecked(false);
-                    thirdAnserwRadioButton.setChecked(false);
-                    fourthAnserwRadioButton.setChecked(false);
 
-                    if(!(firstAnserwRadioButton.isChecked() && secondAnserwRadioButton.isChecked() && thirdAnserwRadioButton.isChecked() && fourthAnserwRadioButton.isChecked())){
-                        choosenAnserw = false;
-                    }
+
+                   Log.i("Selected RadioButton", " " + selectedRadiobutton.getText().toString() );
+
 
                 }else finish();
 
@@ -150,43 +144,18 @@ public class QPageActivity extends AppCompatActivity {
             }
         });
 
-        questionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+     radioGroupGradle = findViewById(R.id.radioanserwgroup);
 
-                switch (checkedId) {
+      radioGroupGradle.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+          @Override
+          public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                    case R.id.odp1_1_radio_button:
-                        if (firstAnserwRadioButton.getText().toString().equals(correctAnserw)){
-                            quantityOfPoints += 1;
-                            choosenAnserw = true;
-                        }
-                        Log.i("Radiobutton", "is Checked");
-                        break;
-                    case R.id.odp1_2_radio_button:
-                        if (secondAnserwRadioButton.getText().toString().equals(correctAnserw)) {
-                            quantityOfPoints += 1;
-                            choosenAnserw = true;
-                        }
+              checkedId = radioGroupGradle.getCheckedRadioButtonId();
 
-                        break;
-                    case R.id.odp1_3_radio_button:
-                        if (thirdAnserwRadioButton.getText().toString().equals(correctAnserw)) {
-                            quantityOfPoints++;
-                            Log.i("Radio button 1.3 ", "" + quantityOfPoints);
-                            choosenAnserw = true;
-                        }
-                        Log.i("" + thirdAnserwRadioButton.getText(), correctAnserw);
-                        break;
-                    case R.id.odp1_4_radio_button:
-                        choosenAnserw = fourthAnserwRadioButton.getText().toString().equals(correctAnserw);
-                        if (choosenAnserw) {
-                            quantityOfPoints += 1;
-                        }
-                        break;
-                }
-            }
-        });
+              selectedRadiobutton = findViewById(checkedId);
+
+          }
+      });
 
         Log.i("Page", "" + page);
     }
