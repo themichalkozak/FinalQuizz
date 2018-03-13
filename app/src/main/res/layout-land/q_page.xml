@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.themichalkozak.finalquiz.QPageActivity"
+    android:id="@+id/question_layout">
+
+    <LinearLayout
+        android:id="@+id/gradle_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_below="@id/gradle_layout"
+        android:id="@+id/firstQ_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center_horizontal"
+        android:text="@string/firstQ_text_view" />
+
+    <ImageView
+        android:layout_below="@id/firstQ_text_view"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:id="@+id/QPage_Image_View"
+        android:contentDescription="@string/ImageDescribtion"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstQ_text_view"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/QPage_Image_View">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/nextQ_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="12dp"
+        android:background="@drawable/shape_triangle"
+        android:padding="8dp"
+        android:text="@string/nextQ_button"
+        android:textAllCaps="true" />
+
+    <RadioGroup
+        android:id="@+id/radioanserwgroup"
+        style="radioButtonQpageActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gradle_layout"
+        android:layout_toEndOf="@+id/QPage_Image_View">
+
+
+        <RadioButton
+            android:id="@+id/odp1_1_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:paddingEnd="0dp"
+            android:paddingStart="20dp"
+            android:text="@string/odp1_1_text_view"
+            android:textColor="#ffff" />
+
+        <RadioButton
+            android:id="@+id/odp1_2_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:paddingEnd="0dp"
+            android:paddingStart="20dp"
+            android:text="@string/odp1_2_text_view"
+            android:textColor="#ffff"
+            tools:ignore="RtlSymmetry" />
+
+        <RadioButton
+            android:id="@+id/odp1_3_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:paddingEnd="0dp"
+            android:paddingStart="20dp"
+            android:text="@string/odp1_3_text_view"
+            android:textColor="#ffff"
+            tools:ignore="RtlSymmetry" />
+
+        <RadioButton
+            android:id="@+id/odp1_4_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:paddingEnd="0dp"
+            android:paddingStart="20dp"
+            android:text="@string/odp1_4_text_view"
+            android:textColor="#ffff"
+            tools:ignore="RtlSymmetry" />
+    </RadioGroup>
+
+
+</RelativeLayout>
