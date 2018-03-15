@@ -144,17 +144,17 @@
 
     <string-array name="PacketSix">
         <item>@string/QuestionSix</item>
+        <item>@string/Anserw6_4</item>
+        <item>@string/Anserw6_3</item>
         <item>@string/Anserw6_1</item>
         <item>@string/Anserw6_2</item>
-        <item>@string/Anserw6_3</item>
-        <item>@string/Anserw6_4</item>
     </string-array>
     <string-array name="PacketSeven">
         <item>@string/QuestionSeven</item>
-        <item>@string/Anserw7_1</item>
-        <item>@string/Anserw7_2</item>
-        <item>@string/Anserw7_3</item>
         <item>@string/Anserw7_4</item>
+        <item>@string/Anserw7_3</item>
+        <item>@string/Anserw7_2</item>
+        <item>@string/Anserw7_1</item>
     </string-array>
 
     <string-array name="PacketEight">

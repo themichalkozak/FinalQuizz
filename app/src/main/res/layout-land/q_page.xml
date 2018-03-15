@@ -63,7 +63,7 @@
         style="radioButtonQpageActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gradle_layout"
+        android:layout_below="@+id/firstQ_text_view"
         android:layout_toEndOf="@+id/QPage_Image_View">
 
 

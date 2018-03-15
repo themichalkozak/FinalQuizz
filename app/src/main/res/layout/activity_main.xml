@@ -46,10 +46,9 @@
 
 
         <RadioButton
-            android:id="@+id/men_radiobutton"
+            android:id="@+id/woman_radiobutton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onSexRadioButton" />
+            android:layout_height="wrap_content" />
 
 
         <TextView
@@ -62,10 +61,9 @@
 
 
         <RadioButton
-            android:id="@+id/woman_radiobutton"
+            android:id="@+id/men_radiobutton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onSexRadioButton" />
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -100,23 +98,20 @@
             android:id="@+id/first_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="35dp"
-            android:onClick="onRadioButtonClicked" />
+            android:layout_marginEnd="35dp" />
 
         <RadioButton
             android:id="@+id/second_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="46dp"
-            android:layout_marginStart="46dp"
-            android:onClick="onRadioButtonClicked" />
+            android:layout_marginStart="46dp" />
 
         <RadioButton
             android:id="@+id/third_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:onClick="onRadioButtonClicked" />
+            android:layout_marginStart="35dp" />
 
 
 
