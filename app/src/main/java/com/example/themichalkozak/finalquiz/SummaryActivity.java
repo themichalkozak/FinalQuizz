@@ -47,7 +47,7 @@ public class SummaryActivity extends AppCompatActivity {
         descriptionTextView.setText(description);
 
         ImageView summaryImageView = findViewById(R.id.summary_ImageView);
-        if (quantityOfPoints>5) summaryImageView.setImageResource(R.drawable.cheflike);
+        if (quantityOfPoints > 5) summaryImageView.setImageResource(R.drawable.cheflike);
         else summaryImageView.setImageResource(R.drawable.zmywak);
 
     }

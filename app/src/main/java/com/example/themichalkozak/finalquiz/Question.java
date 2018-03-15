@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable;
 public class Question {
 
     private Drawable image;
-    private String [] question;
+    private String[] question;
     private String correctAnserw;
 
     public Question(Drawable image, String[] question, String correctAnserw) {

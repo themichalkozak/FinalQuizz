@@ -15,9 +15,6 @@ import android.widget.RadioGroup;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final String LOG_TAG =
-            MainActivity.class.getSimpleName();
-
     public EditText nameEditText;
     public RadioButton firstRadioButton;
     public RadioButton secondRadioButton;
@@ -71,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         skillRadioGroup = findViewById(R.id.level_of_cooking_radio_button);
+
         skillRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -88,47 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    public String onRadioButtonClicked(View view) {
-//        // Is the button now checked?
-//        boolean checked = ((RadioButton) view).isChecked();
-//
-//        // Check which radio button was clicked
-//        switch (view.getId()) {
-//            case R.id.first_radio_button:
-//                if (checked)
-//                    chosesSkill = getResources().getString(R.string.dishwasher_text_view);
-//                Log.i("choseSkill", "" + chosesSkill);
-//                break;
-//            case R.id.second_radio_button:
-//                if (checked)
-//                    chosesSkill = getResources().getString(R.string.cook_text_view);
-//                break;
-//
-//            case R.id.third_radio_button:
-//                if (checked)
-//                    chosesSkill = getResources().getString(R.string.chef_text_view);
-//                break;
-//        }
-//        return chosesSkill;
-//    }
-
-//            public void onSexRadioButton(View view) {
-//                // Is the button now checked?
-//                boolean checked = ((RadioButton) view).isChecked();
-//
-//                // Check which radio button was clicked
-//                switch (view.getId()) {
-//                    case R.id.men_radiobutton:
-//                        if (checked)
-//                            choseSex = getResources().getString(R.string.Womman_sex_choice);
-//                        break;
-//                    case R.id.woman_radiobutton:
-//                        if (checked)
-//                            choseSex = getResources().getString(R.string.sex_choise_text_view);
-//                        Log.i("RadioSexButton", "jest git");
-//                        break;
-//                }
-//            }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -141,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
     public void lunchSummaryActivity() {
 
