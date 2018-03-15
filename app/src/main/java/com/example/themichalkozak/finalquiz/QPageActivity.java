@@ -22,6 +22,21 @@ import java.util.ArrayList;
 
 public class QPageActivity extends AppCompatActivity {
 
+    public RadioGroup.OnCheckedChangeListener anserwListener = new RadioGroup.OnCheckedChangeListener(){
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            checkedId = radioGroupGradle.getCheckedRadioButtonId();
+
+            selectedRadioButton = findViewById(checkedId);
+
+
+            if(selectedRadioButton.getText().toString().equals(correctAnserw)){
+                choosenAnserw=true;
+            }else choosenAnserw=false;
+        }
+    };
+
 
 
     int[] goodAnswers = new int[10];
@@ -46,9 +61,13 @@ public class QPageActivity extends AppCompatActivity {
     int page = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.q_page);
+
+        if(savedInstanceState != null){
+            page = savedInstanceState.getInt("PAGE");
+        }
 
 
         final TextView questionTextview = (TextView) findViewById(R.id.firstQ_text_view);
@@ -101,6 +120,7 @@ public class QPageActivity extends AppCompatActivity {
         fourthAnserwRadioButton.setText(currentArray[4]);
 
         radioGroupGradle = findViewById(R.id.radioanserwgroup);
+        radioGroupGradle.setOnCheckedChangeListener(anserwListener);
 
         Log.i("PageQpageactivity", "" + page);
 
@@ -146,7 +166,7 @@ public class QPageActivity extends AppCompatActivity {
                     thirdAnserwRadioButton.setText(currentArray[3]);
                     fourthAnserwRadioButton.setText(currentArray[4]);
 
-
+                        selectedRadioButton.setChecked(false);
 
                 }else finish();
 
@@ -156,19 +176,19 @@ public class QPageActivity extends AppCompatActivity {
         });
 
 
-        radioGroupGradle.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                checkedId = radioGroupGradle.getCheckedRadioButtonId();
-
-                selectedRadioButton = findViewById(checkedId);
-
-
-                if(selectedRadioButton.getText().toString().equals(correctAnserw)){
-                    choosenAnserw=true;
-                }else choosenAnserw=false;
-            }
-        });
+//        radioGroupGradle.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                checkedId = radioGroupGradle.getCheckedRadioButtonId();
+//
+//                selectedRadioButton = findViewById(checkedId);
+//
+//
+//                if(selectedRadioButton.getText().toString().equals(correctAnserw)){
+//                    choosenAnserw=true;
+//                }else choosenAnserw=false;
+//            }
+//        });
 
 
 
