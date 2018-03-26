@@ -101,8 +101,6 @@
     <string name="Anserw10_4">Śmietana</string>
 
 
-
-
     <string-array name="PacketOne">
         <item>@string/QuestionOne</item>
         <item>@string/Anserw1_1</item>
@@ -180,7 +178,7 @@
         <item>@string/Anserw10_3</item>
         <item>@string/Anserw10_4</item>
     </string-array>
-    
+
     <string name="Anserw9_2">Uszczęśliwi Cię</string>
     <string name="Anserw8_2">96°C</string>
     <string name="hero" translatable="false">Hero</string>
@@ -209,4 +207,5 @@
         <item>@string/Q9</item>
         <item>@string/Q10</item>
     </string-array>
+    <string name="title_activity_qpage_check_box">QPageCheckBox</string>
 </resources>

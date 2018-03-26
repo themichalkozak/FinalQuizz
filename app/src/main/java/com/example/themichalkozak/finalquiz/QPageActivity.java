@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,12 +18,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
 public class QPageActivity extends AppCompatActivity {
 
-    public RadioGroup.OnCheckedChangeListener anserwListener = new RadioGroup.OnCheckedChangeListener(){
+    public RadioGroup.OnCheckedChangeListener anserwListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
 
@@ -31,13 +34,11 @@ public class QPageActivity extends AppCompatActivity {
             selectedRadioButton = findViewById(checkedId);
 
 
-            if(selectedRadioButton.getText().toString().equals(correctAnserw)){
-                choosenAnserw=true;
-            }else choosenAnserw=false;
+            if (selectedRadioButton.getText().toString().equals(correctAnserw)) {
+                choosenAnserw = true;
+            } else choosenAnserw = false;
         }
     };
-
-
 
     int[] goodAnswers = new int[10];
 
@@ -59,13 +60,15 @@ public class QPageActivity extends AppCompatActivity {
     boolean choosenAnserw;
 
     int page = 0;
+    int rate;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.q_page);
 
-        if(savedInstanceState != null){
+
+        if (savedInstanceState != null) {
             page = savedInstanceState.getInt("PAGE");
         }
 
@@ -82,7 +85,7 @@ public class QPageActivity extends AppCompatActivity {
 
         gradleTv = new TextView(QPageActivity.this);
 
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
 
             gradleLayout.addView(creatNewGradleTv(i));
             goodAnswers[i] = 2;
@@ -91,12 +94,10 @@ public class QPageActivity extends AppCompatActivity {
         questionImage = (ImageView) findViewById(R.id.QPage_Image_View);
 
 
-
-
         final ArrayList<Question> questionArrayList = new ArrayList<Question>();
 
-        questionArrayList.add(new Question(getDrawable(R.drawable.pizza), getResources().getStringArray(R.array.PacketOne), getResources().getStringArray(R.array.PacketOne)[3]));
         questionArrayList.add(new Question(getDrawable(R.drawable.homar), getResources().getStringArray(R.array.PacketTwo), getResources().getStringArray(R.array.PacketTwo)[4]));
+        questionArrayList.add(new Question(getDrawable(R.drawable.pizza), getResources().getStringArray(R.array.PacketOne), getResources().getStringArray(R.array.PacketOne)[3]));
         questionArrayList.add(new Question(getDrawable(R.drawable.pitaya), getResources().getStringArray(R.array.PacketThree), getResources().getStringArray(R.array.PacketThree)[3]));
         questionArrayList.add(new Question(getDrawable(R.drawable.karmel), getResources().getStringArray(R.array.PacketFour), getResources().getStringArray(R.array.PacketFour)[1]));
         questionArrayList.add(new Question(getDrawable(R.drawable.kuchniafrancuska), getResources().getStringArray(R.array.PacketFive), getResources().getStringArray(R.array.PacketFive)[2]));
@@ -122,73 +123,100 @@ public class QPageActivity extends AppCompatActivity {
         radioGroupGradle = findViewById(R.id.radioanserwgroup);
         radioGroupGradle.setOnCheckedChangeListener(anserwListener);
 
+
         Log.i("PageQpageactivity", "" + page);
 
         Log.i("QPageActivity", "quantity of points " + quantityOfPoints);
-
-
 
 
         findViewById(R.id.nextQ_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Button nextPage = (Button) findViewById(R.id.nextQ_button);
-                if(page==9){
-                    nextPage.setText("Summary");
-                }
 
-                gradleTv = (TextView) findViewById(page);
 
-                if(choosenAnserw){
-                    gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
-                    goodAnswers[page] = 1;
-                    quantityOfPoints++;
-                }else {
-                    gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
-                    goodAnswers[page] = 0;
-                }
 
-                Log.i("chosen Anserw ", " " + choosenAnserw);
 
-                page++;
 
-                if (page<10) {
+                    Button nextPage = (Button) findViewById(R.id.nextQ_button);
+                    if (page == 9) {
+                        nextPage.setText("Summary");
+                    } else {
 
-                    question = questionArrayList.get(page);
-                    currentArray = question.getQuestion();
-                    correctAnserw = question.getCorrectAnserw();
-                    questionImage.setImageDrawable(question.getImage());
-                    questionTextview.setText(currentArray[0]);
+                        gradleTv = (TextView) findViewById(page);
 
-                    firstAnserwRadioButton.setText(currentArray[1]);
-                    secondAnserwRadioButton.setText(currentArray[2]);
-                    thirdAnserwRadioButton.setText(currentArray[3]);
-                    fourthAnserwRadioButton.setText(currentArray[4]);
+                        if (choosenAnserw) {
+                            gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
+                            goodAnswers[page] = 1;
+                            quantityOfPoints++;
+                        } else {
+                            gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
+                            goodAnswers[page] = 0;
+                        }
+
+                    }
+
+                    Log.i("chosen Anserw ", " " + choosenAnserw);
+
+                    page++;
+
+
+
+                    if (page < 10) {
+
+                        question = questionArrayList.get(page);
+                        currentArray = question.getQuestion();
+                        correctAnserw = question.getCorrectAnserw();
+                        questionImage.setImageDrawable(question.getImage());
+                        questionTextview.setText(currentArray[0]);
+
+                        firstAnserwRadioButton.setText(currentArray[1]);
+                        secondAnserwRadioButton.setText(currentArray[2]);
+                        thirdAnserwRadioButton.setText(currentArray[3]);
+                        fourthAnserwRadioButton.setText(currentArray[4]);
 
                         selectedRadioButton.setChecked(false);
 
-                }else finish();
+                    } else if(page == 10){
+
+                        setContentView(R.layout.activity_qpage_check_box);
+
+                        CheckBox checkBox1 = findViewById(R.id.checkbox_1);
+                        CheckBox checkBox2 = findViewById(R.id.checkbox_2);
+                        CheckBox checkBox3 = findViewById(R.id.checkbox_3);
+                        CheckBox checkBox4 = findViewById(R.id.checkbox_4);
+                        TextView rateTv = (TextView) findViewById(R.id.rate_TV);
+
+
+
+
+                        if(checkBox1.isSelected()){
+                            rate=1;
+                        }
+
+                        if(checkBox2.isChecked()){
+                            checkBox1.setChecked(true);
+                            rate=2;
+                        }else if(checkBox3.isChecked()){
+                            checkBox1.setChecked(true);
+                            checkBox2.setChecked(true);
+                            rate=3;
+                        }else if(checkBox4.isChecked()){
+                            checkBox1.setChecked(true);
+                            checkBox2.setChecked(true);
+                            checkBox3.setChecked(true);
+                            rate=4;rateTv.setText("" + rate);
+                        }
+
+
+
+                    }else finish();
+
 
 
                 Log.i("nextQ_button", "" + page);
             }
         });
-
-
-//        radioGroupGradle.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                checkedId = radioGroupGradle.getCheckedRadioButtonId();
-//
-//                selectedRadioButton = findViewById(checkedId);
-//
-//
-//                if(selectedRadioButton.getText().toString().equals(correctAnserw)){
-//                    choosenAnserw=true;
-//                }else choosenAnserw=false;
-//            }
-//        });
 
 
 
@@ -197,13 +225,13 @@ public class QPageActivity extends AppCompatActivity {
 
     }
 
-    public TextView creatNewGradleTv (int IdIndex){
+    public TextView creatNewGradleTv(int IdIndex) {
 
-        String QArray [] = getResources().getStringArray(R.array.numberQ);
+        String QArray[] = getResources().getStringArray(R.array.numberQ);
 
 
         final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(4,0,4,0);
+        layoutParams.setMargins(4, 0, 4, 0);
         final TextView gradleTv = new TextView(QPageActivity.this);
         gradleTv.setLayoutParams(layoutParams);
         gradleTv.setText(QArray[IdIndex]);
@@ -218,13 +246,13 @@ public class QPageActivity extends AppCompatActivity {
     @Override
     public void finish() {
 
-            Log.i("page>10", "inside");
-            Intent questionIntent = new Intent();
+        Log.i("page>10", "inside");
+        Intent questionIntent = new Intent();
 
-            questionIntent.putExtra("POINTS", quantityOfPoints);
+        questionIntent.putExtra("POINTS", quantityOfPoints);
 
-            setResult(RESULT_OK, questionIntent);
-            super.finish();
+        setResult(RESULT_OK, questionIntent);
+        super.finish();
 
     }
 
@@ -236,8 +264,8 @@ public class QPageActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putIntArray("ANSWERS", goodAnswers);
-        outState.putInt("PAGE",page);
-        outState.putInt("POINTS",quantityOfPoints);
+        outState.putInt("PAGE", page);
+        outState.putInt("POINTS", quantityOfPoints);
         super.onSaveInstanceState(outState);
 
     }
@@ -250,14 +278,13 @@ public class QPageActivity extends AppCompatActivity {
         page = savedInstanceState.getInt("PAGE");
         quantityOfPoints = savedInstanceState.getInt("POINT");
 
-        Log.i("PAGE ONRESTORE","" + page);
 
-        for (int i=0 ;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             ArrayList<TextView> gradleArrayTv = new ArrayList<>();
             TextView gradleTv = (TextView) findViewById(i);
-            if(goodAnswers[i] == 1){
+            if (goodAnswers[i] == 1) {
                 gradleTv.setBackground(getDrawable(R.drawable.circle_correct));
-            }else if(goodAnswers[i] == 0) {
+            } else if (goodAnswers[i] == 0) {
                 gradleTv.setBackground(getDrawable(R.drawable.cirrcle_incorect));
             } else {
                 gradleTv.setBackground(getDrawable(R.drawable.circle_unchecked));
@@ -266,6 +293,3 @@ public class QPageActivity extends AppCompatActivity {
         }
     }
 }
-
-
-

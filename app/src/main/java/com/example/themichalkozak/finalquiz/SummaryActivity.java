@@ -50,6 +50,8 @@ public class SummaryActivity extends AppCompatActivity {
         if (quantityOfPoints > 5) summaryImageView.setImageResource(R.drawable.cheflike);
         else summaryImageView.setImageResource(R.drawable.zmywak);
 
+
+
     }
 
 
