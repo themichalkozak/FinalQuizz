@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             if (extras != null) {
                 quantityPoints = extras.getInt("POINTS");
-                Log.i("Main Activity", "" + quantityPoints);
                 lunchSummaryActivity();
             }
         }

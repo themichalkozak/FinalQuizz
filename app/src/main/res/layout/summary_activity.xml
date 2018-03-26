@@ -80,6 +80,13 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/name_edit_text_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_margin="4dp"/>
+
+                <TextView
                     android:id="@+id/quantity_points"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -152,30 +159,63 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/checkbox_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/rate_icon"/>
+            <CheckBox
+                android:id="@+id/checkbox_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/rate_icon"/>
+            <CheckBox
+                android:id="@+id/checkbox_3"
+                android:layout_width="wrap_content"
+                android:button="@drawable/rate_icon"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:id="@+id/checkbox_4"
+                android:button="@drawable/rate_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <CheckBox
+                android:id="@+id/checkbox_5"
+                android:button="@drawable/rate_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/name_edit_text_summary"
+        <EditText
+            android:layout_margin="20dp"
+            android:id="@+id/rate_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/summary_text_view"
-            android:gravity="start" />
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/rate_Layout"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:hint="Enter your description to see rate"/>
+
+        <TextView
+            android:id="@+id/rate_button"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/rate_editText"
+            android:layout_centerInParent="true"
+            android:padding="20dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_triangle"
+            android:text="Rate"/>
+
+        <TextView
+            android:id="@+id/rate_description"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/rate_button"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
 </ScrollView>
